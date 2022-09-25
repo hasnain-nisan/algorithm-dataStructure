@@ -30,7 +30,7 @@ const array = [
   103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119,
 ];
 
-const result = recursiveBinarySearch(array, 15);
+const result = recursiveBinarySearch(array, 900);
 const result1 = recursiveBinarySearch(array, 600);
 
 verifyBinarySearch(result);
