@@ -9,7 +9,14 @@ class Node {
     }
 }
 
+class LinkedList {
+    constructor(head){
+        this.head = head;
+    }
+}
+
 let node1 = new Node('nisan');
 let node2 = new Node("jahid");
 node1.next = node2
-console.log(node1, node2);
+let linkedList = new LinkedList(node1)
+console.log(linkedList)
