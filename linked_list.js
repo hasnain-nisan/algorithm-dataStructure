@@ -10,13 +10,30 @@ class Node {
 }
 
 class LinkedList {
+    //singly linked list
     constructor(head){
-        this.head = head;
+        this.head = head; 
+    }
+    is_empty = () => {
+        return this.head == null
+    }
+    size = () => {
+        this.current = this.head;
+        this.count = 0;
+        while (this.current) {
+            this.count++;
+            this.current = this.current.next;
+        }
+        return this.count;
     }
 }
 
 let node1 = new Node('nisan');
 let node2 = new Node("jahid");
+let node3 = new Node("salman");
+node2.next = node3
 node1.next = node2
 let linkedList = new LinkedList(node1)
-console.log(linkedList)
+console.log(JSON.stringify(linkedList));
+console.log(linkedList.size())
+console.log(linkedList.is_empty());
