@@ -1,4 +1,5 @@
-console.info('Linked list');
+let code = 'https://teamtreehouse.com/library/introduction-to-data-structures/linked-lists-operations'
+console.info(code);
 
 //an object to store a single node of a linked list
 //two oattributes data and the next to represent the next node
