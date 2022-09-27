@@ -13,11 +13,11 @@ class LinkedList {
 
     //singly linked list
     constructor(head){
-        if(typeof head === 'object'){
-            this.head = head; 
-        } else {
+        // if(typeof head === 'object'){
+        //     this.head = head; 
+        // } else {
             this.head = new Node(head);
-        }
+        // }
     }
     
     is_empty = () => {
@@ -57,6 +57,21 @@ class LinkedList {
         this.head = node
     }
 
+    //add a new node in the tail
+    //contastant time O(1) operation
+    apend = (data) => {
+        let node = new Node(data)
+        let current = this.head;
+        if (current == null) {
+          this.head = node;
+          return;
+        }
+        while (current !== null && current.next !== null) {
+          current = current.next;
+        }
+        current.next = node;
+    }
+
     //inserts a new node containing data at index position
     // insertion takes constant O(1) time but finding the node at index takes O(n) linear time
     //takes overall O (n) time
@@ -83,16 +98,20 @@ class LinkedList {
         }
     }
 
+    deleteByValue = (val) => {
+        return this.search(val);
+    }
 
 }
 
-// let node1 = new Node('nisan');
-// let node2 = new Node("jahid");
-// let node3 = new Node("salman");
-// node2.next = node3
-// node1.next = node2
-// let linkedList = new LinkedList(node1)
-// console.log(JSON.stringify(linkedList));
+let node1 = new Node('nisan');
+let node2 = new Node("jahid");
+let node3 = new Node("salman");
+node2.next = node3
+node1.next = node2
+let linkedList = new LinkedList(node1)
+linkedList.apend('SOikat')
+console.log(JSON.stringify(linkedList));
 // console.log(linkedList.size());
 // console.log(linkedList.prepend("a"));
 // console.log(JSON.stringify(linkedList));
@@ -106,7 +125,7 @@ class LinkedList {
 // console.log(linkedList.is_empty());
 
 let linkedList1 = new LinkedList();
-linkedList1.prepend('a')
+linkedList1.insert('a', 5)
 console.log(JSON.stringify(linkedList1));
 linkedList1.insert('0a', 0);
 console.log(JSON.stringify(linkedList1));
@@ -114,8 +133,7 @@ linkedList1.insert("0aa", 1);
 console.log(JSON.stringify(linkedList1));
 linkedList1.insert("0aaa", 2);
 console.log(JSON.stringify(linkedList1));
-console.log(linkedList1.insert("0aaa20", 20))
+linkedList1.apend('assa')
 console.log(JSON.stringify(linkedList1));
-
-let ll = new LinkedList('a');
-console.log(JSON.stringify(ll));
+console.log(linkedList1.insert("0aaa20", 20))
+console.log(linkedList1.search('0a'));
