@@ -1,6 +1,6 @@
 console.info('Linked list');
 
-// an object to store a single node of a linked list
+//an object to store a single node of a linked list
 //two oattributes data and the next to represent the next node
 class Node {
     constructor(data) {
@@ -10,30 +10,112 @@ class Node {
 }
 
 class LinkedList {
+
     //singly linked list
     constructor(head){
-        this.head = head; 
+        if(typeof head === 'object'){
+            this.head = head; 
+        } else {
+            this.head = new Node(head);
+        }
     }
+    
     is_empty = () => {
         return this.head == null
     }
+
     size = () => {
-        this.current = this.head;
-        this.count = 0;
-        while (this.current) {
-            this.count++;
-            this.current = this.current.next;
+        let current = this.head;
+        let count = 0;
+        while (current) {
+            count++;
+            current = current.next;
         }
-        return this.count;
+        return count;
     }
+
+    // search for the first node containing data that matches the input
+    // return the node or null
+    //takes O(n) time
+    search = (data => {
+        let current = this.head;
+        while(current){
+            if(current.data == data){
+                return current;
+            } else{
+                current = current.next;
+            }
+        }
+        return null;
+    })
+
+    //add a new node in the haed
+    //contastant time O(1) operation
+    prepend = (data) => {
+        let node = new Node(data)
+        node.next = this.head;
+        this.head = node
+    }
+
+    //inserts a new node containing data at index position
+    // insertion takes constant O(1) time but finding the node at index takes O(n) linear time
+    //takes overall O (n) time
+    insert = (data, index) => {
+        if(index == 0){
+            this.prepend(data)
+        }
+        if(index > 0){
+            let new_node = new Node(data)
+            let current = this.head
+            let position = index
+            while(position > 1){
+                if(current.next){
+                    current = current.next;
+                    position --
+                } else {
+                    return null
+                }
+            }
+            let prev = current
+            let next = current.next
+            prev.next = new_node
+            new_node.next = next
+        }
+    }
+
+
 }
 
-let node1 = new Node('nisan');
-let node2 = new Node("jahid");
-let node3 = new Node("salman");
-node2.next = node3
-node1.next = node2
-let linkedList = new LinkedList(node1)
-console.log(JSON.stringify(linkedList));
-console.log(linkedList.size())
-console.log(linkedList.is_empty());
+// let node1 = new Node('nisan');
+// let node2 = new Node("jahid");
+// let node3 = new Node("salman");
+// node2.next = node3
+// node1.next = node2
+// let linkedList = new LinkedList(node1)
+// console.log(JSON.stringify(linkedList));
+// console.log(linkedList.size());
+// console.log(linkedList.prepend("a"));
+// console.log(JSON.stringify(linkedList));
+// console.log(linkedList.size());
+// console.log(linkedList.prepend("ab"));
+// console.log(JSON.stringify(linkedList));
+// console.log(linkedList.size());
+// console.log(linkedList.prepend("abc"));
+// console.log(JSON.stringify(linkedList));
+// console.log(linkedList.size());
+// console.log(linkedList.is_empty());
+
+let linkedList1 = new LinkedList();
+linkedList1.prepend('a')
+console.log(JSON.stringify(linkedList1));
+linkedList1.insert('0a', 0);
+console.log(JSON.stringify(linkedList1));
+linkedList1.insert("0aa", 1);
+console.log(JSON.stringify(linkedList1));
+linkedList1.insert("0aaa", 2);
+console.log(JSON.stringify(linkedList1));
+console.log(linkedList1.insert("0aaa20", 20))
+console.log(JSON.stringify(linkedList1));
+
+let ll = new LinkedList('a');
+console.log(JSON.stringify(ll));
